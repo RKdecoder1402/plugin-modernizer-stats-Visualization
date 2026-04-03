@@ -1,33 +1,42 @@
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
+import data from "./data/plugins.json";
 
 function App() {
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let updated = 0;
+    let deprecated = 0;
+    let needsMigration = 0;
+
+    data.forEach((plugin: any) => {
+      if (plugin.status === "updated") updated++;
+      else if (plugin.status === "deprecated") deprecated++;
+      else needsMigration++;
+    });
+
     const chart = echarts.init(chartRef.current!);
 
-    const option = {
+    chart.setOption({
       title: {
         text: "Plugin Modernization Status",
       },
       tooltip: {},
       xAxis: {
         type: "category",
-        data: ["Updated", "Deprecated APIs", "Needs Migration"],
+        data: ["Updated", "Deprecated", "Needs Migration"],
       },
       yAxis: {
         type: "value",
       },
       series: [
         {
-          data: [120, 200, 150],
+          data: [updated, deprecated, needsMigration],
           type: "bar",
         },
       ],
-    };
-
-    chart.setOption(option);
+    });
 
     return () => {
       chart.dispose();
@@ -43,4 +52,3 @@ function App() {
 }
 
 export default App;
-

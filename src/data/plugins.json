@@ -1,0 +1,7 @@
+[
+  { "name": "plugin-a", "status": "updated" },
+  { "name": "plugin-b", "status": "deprecated" },
+  { "name": "plugin-c", "status": "needs_migration" },
+  { "name": "plugin-d", "status": "updated" },
+  { "name": "plugin-e", "status": "deprecated" }
+]
