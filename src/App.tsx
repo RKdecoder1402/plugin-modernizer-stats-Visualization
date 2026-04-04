@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import data from "./data/plugins.json";
 
 function App() {
   const chartRef = useRef<HTMLDivElement>(null);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -13,6 +14,8 @@ function App() {
     let needsMigration = 0;
 
     data.forEach((plugin: any) => {
+      if (filter !== "all" && plugin.status !== filter) return;
+
       if (plugin.status === "updated") updated++;
       else if (plugin.status === "deprecated") deprecated++;
       else if (plugin.status === "needs_migration") needsMigration++;
@@ -71,11 +74,21 @@ function App() {
     return () => {
       barChart.dispose();
     };
-  }, []);
+  }, [filter]);
 
   return (
     <div style={{ padding: "20px" }}>
       <h1>Plugin Modernizer Dashboard</h1>
+
+      {/* FILTER */}
+      <select
+        onChange={(e) => setFilter(e.target.value)}
+        style={{ marginBottom: "20px", padding: "5px" }}
+      >
+        <option value="all">All</option>
+        <option value="updated">Updated</option>
+        <option value="deprecated">Deprecated</option>
+      </select>
 
       {/* BAR CHART */}
       <div
