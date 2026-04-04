@@ -6,6 +6,8 @@ function App() {
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!chartRef.current) return;
+
     let updated = 0;
     let deprecated = 0;
     let needsMigration = 0;
@@ -13,12 +15,13 @@ function App() {
     data.forEach((plugin: any) => {
       if (plugin.status === "updated") updated++;
       else if (plugin.status === "deprecated") deprecated++;
-      else needsMigration++;
+      else if (plugin.status === "needs_migration") needsMigration++;
     });
 
-    const chart = echarts.init(chartRef.current!);
+    // BAR CHART
+    const barChart = echarts.init(chartRef.current);
 
-    chart.setOption({
+    barChart.setOption({
       title: {
         text: "Plugin Modernization Status",
       },
@@ -38,15 +41,53 @@ function App() {
       ],
     });
 
+    // PIE CHART
+    const pieDom = document.getElementById("pieChart");
+    if (pieDom) {
+      const pieChart = echarts.init(pieDom);
+
+      pieChart.setOption({
+        title: {
+          text: "Distribution",
+          left: "center",
+        },
+        tooltip: {
+          trigger: "item",
+        },
+        series: [
+          {
+            type: "pie",
+            radius: "50%",
+            data: [
+              { value: updated, name: "Updated" },
+              { value: deprecated, name: "Deprecated" },
+              { value: needsMigration, name: "Needs Migration" },
+            ],
+          },
+        ],
+      });
+    }
+
     return () => {
-      chart.dispose();
+      barChart.dispose();
     };
   }, []);
 
   return (
     <div style={{ padding: "20px" }}>
       <h1>Plugin Modernizer Dashboard</h1>
-      <div ref={chartRef} style={{ width: "600px", height: "400px" }} />
+
+      {/* BAR CHART */}
+      <div
+        ref={chartRef}
+        style={{ width: "600px", height: "400px", marginBottom: "40px" }}
+      />
+
+      {/* PIE CHART */}
+      <div
+        id="pieChart"
+        style={{ width: "600px", height: "400px" }}
+      />
     </div>
   );
 }
