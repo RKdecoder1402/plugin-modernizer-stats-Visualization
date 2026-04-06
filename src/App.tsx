@@ -21,21 +21,16 @@ function App() {
       else if (plugin.status === "needs_migration") needsMigration++;
     });
 
-    // BAR CHART
     const barChart = echarts.init(chartRef.current);
 
     barChart.setOption({
-      title: {
-        text: "Plugin Modernization Status",
-      },
+      title: { text: "Plugin Modernization Status" },
       tooltip: {},
       xAxis: {
         type: "category",
         data: ["Updated", "Deprecated", "Needs Migration"],
       },
-      yAxis: {
-        type: "value",
-      },
+      yAxis: { type: "value" },
       series: [
         {
           data: [updated, deprecated, needsMigration],
@@ -44,19 +39,13 @@ function App() {
       ],
     });
 
-    // PIE CHART
     const pieDom = document.getElementById("pieChart");
     if (pieDom) {
       const pieChart = echarts.init(pieDom);
 
       pieChart.setOption({
-        title: {
-          text: "Distribution",
-          left: "center",
-        },
-        tooltip: {
-          trigger: "item",
-        },
+        title: { text: "Distribution", left: "center" },
+        tooltip: { trigger: "item" },
         series: [
           {
             type: "pie",
@@ -76,6 +65,12 @@ function App() {
     };
   }, [filter]);
 
+  // table filter logic
+  const filteredData =
+    filter === "all"
+      ? data
+      : data.filter((p: any) => p.status === filter);
+
   return (
     <div style={{ padding: "20px" }}>
       <h1>Plugin Modernizer Dashboard</h1>
@@ -88,6 +83,7 @@ function App() {
         <option value="all">All</option>
         <option value="updated">Updated</option>
         <option value="deprecated">Deprecated</option>
+        <option value="needs_migration">Needs Migration</option>
       </select>
 
       {/* BAR CHART */}
@@ -99,8 +95,29 @@ function App() {
       {/* PIE CHART */}
       <div
         id="pieChart"
-        style={{ width: "600px", height: "400px" }}
+        style={{ width: "600px", height: "400px", marginBottom: "40px" }}
       />
+
+      {/* TABLE VIEW */}
+      <h2>Plugin Data Explorer</h2>
+
+      <table border={1} cellPadding={10} style={{ borderCollapse: "collapse" }}>
+        <thead>
+          <tr>
+            <th>Plugin Name</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {filteredData.map((plugin: any, index: number) => (
+            <tr key={index}>
+              <td>{plugin.name}</td>
+              <td>{plugin.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
