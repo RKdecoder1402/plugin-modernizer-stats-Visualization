@@ -4,7 +4,11 @@ import data from "./data/plugins.json";
 
 function App() {
   const chartRef = useRef<HTMLDivElement>(null);
+
   const [filter, setFilter] = useState("all");
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("none");
+  const [selectedPlugin, setSelectedPlugin] = useState<any>(null);
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -13,9 +17,18 @@ function App() {
     let deprecated = 0;
     let needsMigration = 0;
 
-    data.forEach((plugin: any) => {
-      if (filter !== "all" && plugin.status !== filter) return;
+    const filtered = data.filter((plugin: any) => {
+      const statusMatch =
+        filter === "all" || plugin.status === filter;
 
+      const searchMatch = plugin.name
+        .toLowerCase()
+        .includes(search.toLowerCase());
+
+      return statusMatch && searchMatch;
+    });
+
+    filtered.forEach((plugin: any) => {
       if (plugin.status === "updated") updated++;
       else if (plugin.status === "deprecated") deprecated++;
       else if (plugin.status === "needs_migration") needsMigration++;
@@ -63,13 +76,29 @@ function App() {
     return () => {
       barChart.dispose();
     };
-  }, [filter]);
+  }, [filter, search, sort]);
 
-  // table filter logic
-  const filteredData =
-    filter === "all"
-      ? data
-      : data.filter((p: any) => p.status === filter);
+  let filteredData = data.filter((p: any) => {
+    const statusMatch = filter === "all" || p.status === filter;
+
+    const searchMatch = p.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    return statusMatch && searchMatch;
+  });
+
+  if (sort === "name") {
+    filteredData.sort((a: any, b: any) =>
+      a.name.localeCompare(b.name)
+    );
+  }
+
+  if (sort === "status") {
+    filteredData.sort((a: any, b: any) =>
+      a.status.localeCompare(b.status)
+    );
+  }
 
   return (
     <div style={{ padding: "20px" }}>
@@ -86,10 +115,34 @@ function App() {
         <option value="needs_migration">Needs Migration</option>
       </select>
 
+      {/* SEARCH */}
+      <input
+        type="text"
+        placeholder="Search plugin..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        style={{ marginLeft: "10px", padding: "5px" }}
+      />
+
+      {/* SORT */}
+      <select
+        onChange={(e) => setSort(e.target.value)}
+        style={{ marginLeft: "10px", padding: "5px" }}
+      >
+        <option value="none">Sort</option>
+        <option value="name">Name</option>
+        <option value="status">Status</option>
+      </select>
+
       {/* BAR CHART */}
       <div
         ref={chartRef}
-        style={{ width: "600px", height: "400px", marginBottom: "40px" }}
+        style={{
+          width: "600px",
+          height: "400px",
+          marginTop: "20px",
+          marginBottom: "40px",
+        }}
       />
 
       {/* PIE CHART */}
@@ -98,7 +151,6 @@ function App() {
         style={{ width: "600px", height: "400px", marginBottom: "40px" }}
       />
 
-      {/* TABLE VIEW */}
       <h2>Plugin Data Explorer</h2>
 
       <table border={1} cellPadding={10} style={{ borderCollapse: "collapse" }}>
@@ -111,13 +163,38 @@ function App() {
 
         <tbody>
           {filteredData.map((plugin: any, index: number) => (
-            <tr key={index}>
+            <tr
+              key={index}
+              onClick={() => setSelectedPlugin(plugin)}
+              style={{ cursor: "pointer" }}
+            >
               <td>{plugin.name}</td>
               <td>{plugin.status}</td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {selectedPlugin && (
+        <div
+          style={{
+            marginTop: "30px",
+            padding: "15px",
+            border: "1px solid gray",
+          }}
+        >
+          <h3>Plugin Details</h3>
+          <p>
+            <b>Name:</b> {selectedPlugin.name}
+          </p>
+          <p>
+            <b>Status:</b> {selectedPlugin.status}
+          </p>
+          <p>
+            <b>Recommendation:</b> Update plugin dependencies and migrate APIs.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
