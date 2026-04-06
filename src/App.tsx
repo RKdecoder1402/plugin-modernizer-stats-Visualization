@@ -10,74 +10,6 @@ function App() {
   const [sort, setSort] = useState("none");
   const [selectedPlugin, setSelectedPlugin] = useState<any>(null);
 
-  useEffect(() => {
-    if (!chartRef.current) return;
-
-    let updated = 0;
-    let deprecated = 0;
-    let needsMigration = 0;
-
-    const filtered = data.filter((plugin: any) => {
-      const statusMatch =
-        filter === "all" || plugin.status === filter;
-
-      const searchMatch = plugin.name
-        .toLowerCase()
-        .includes(search.toLowerCase());
-
-      return statusMatch && searchMatch;
-    });
-
-    filtered.forEach((plugin: any) => {
-      if (plugin.status === "updated") updated++;
-      else if (plugin.status === "deprecated") deprecated++;
-      else if (plugin.status === "needs_migration") needsMigration++;
-    });
-
-    const barChart = echarts.init(chartRef.current);
-
-    barChart.setOption({
-      title: { text: "Plugin Modernization Status" },
-      tooltip: {},
-      xAxis: {
-        type: "category",
-        data: ["Updated", "Deprecated", "Needs Migration"],
-      },
-      yAxis: { type: "value" },
-      series: [
-        {
-          data: [updated, deprecated, needsMigration],
-          type: "bar",
-        },
-      ],
-    });
-
-    const pieDom = document.getElementById("pieChart");
-    if (pieDom) {
-      const pieChart = echarts.init(pieDom);
-
-      pieChart.setOption({
-        title: { text: "Distribution", left: "center" },
-        tooltip: { trigger: "item" },
-        series: [
-          {
-            type: "pie",
-            radius: "50%",
-            data: [
-              { value: updated, name: "Updated" },
-              { value: deprecated, name: "Deprecated" },
-              { value: needsMigration, name: "Needs Migration" },
-            ],
-          },
-        ],
-      });
-    }
-
-    return () => {
-      barChart.dispose();
-    };
-  }, [filter, search, sort]);
-
   let filteredData = data.filter((p: any) => {
     const statusMatch = filter === "all" || p.status === filter;
 
@@ -100,9 +32,101 @@ function App() {
     );
   }
 
+  // STATS
+  const total = filteredData.length;
+
+  const updatedCount = filteredData.filter(
+    (p: any) => p.status === "updated"
+  ).length;
+
+  const deprecatedCount = filteredData.filter(
+    (p: any) => p.status === "deprecated"
+  ).length;
+
+  const needsMigrationCount = filteredData.filter(
+    (p: any) => p.status === "needs_migration"
+  ).length;
+
+  useEffect(() => {
+    if (!chartRef.current) return;
+
+    const barChart = echarts.init(chartRef.current);
+
+    barChart.setOption({
+      title: { text: "Plugin Modernization Status" },
+      tooltip: {},
+      xAxis: {
+        type: "category",
+        data: ["Updated", "Deprecated", "Needs Migration"],
+      },
+      yAxis: { type: "value" },
+      series: [
+        {
+          data: [updatedCount, deprecatedCount, needsMigrationCount],
+          type: "bar",
+        },
+      ],
+    });
+
+    const pieDom = document.getElementById("pieChart");
+    if (pieDom) {
+      const pieChart = echarts.init(pieDom);
+
+      pieChart.setOption({
+        title: { text: "Distribution", left: "center" },
+        tooltip: { trigger: "item" },
+        series: [
+          {
+            type: "pie",
+            radius: "50%",
+            data: [
+              { value: updatedCount, name: "Updated" },
+              { value: deprecatedCount, name: "Deprecated" },
+              { value: needsMigrationCount, name: "Needs Migration" },
+            ],
+          },
+        ],
+      });
+    }
+
+    return () => {
+      barChart.dispose();
+    };
+  }, [filter, search, sort]);
+
+  const cardStyle = {
+    padding: "15px",
+    border: "1px solid gray",
+    minWidth: "120px",
+    textAlign: "center" as const,
+  };
+
   return (
     <div style={{ padding: "20px" }}>
       <h1>Plugin Modernizer Dashboard</h1>
+
+      {/* STATS CARDS */}
+      <div style={{ display: "flex", gap: "20px", marginBottom: "20px" }}>
+        <div style={cardStyle}>
+          <h3>Total</h3>
+          <p>{total}</p>
+        </div>
+
+        <div style={cardStyle}>
+          <h3>Updated</h3>
+          <p>{updatedCount}</p>
+        </div>
+
+        <div style={cardStyle}>
+          <h3>Deprecated</h3>
+          <p>{deprecatedCount}</p>
+        </div>
+
+        <div style={cardStyle}>
+          <h3>Needs Migration</h3>
+          <p>{needsMigrationCount}</p>
+        </div>
+      </div>
 
       {/* FILTER */}
       <select
@@ -184,15 +208,9 @@ function App() {
           }}
         >
           <h3>Plugin Details</h3>
-          <p>
-            <b>Name:</b> {selectedPlugin.name}
-          </p>
-          <p>
-            <b>Status:</b> {selectedPlugin.status}
-          </p>
-          <p>
-            <b>Recommendation:</b> Update plugin dependencies and migrate APIs.
-          </p>
+          <p><b>Name:</b> {selectedPlugin.name}</p>
+          <p><b>Status:</b> {selectedPlugin.status}</p>
+          <p><b>Recommendation:</b> Update plugin dependencies and migrate APIs.</p>
         </div>
       )}
     </div>
