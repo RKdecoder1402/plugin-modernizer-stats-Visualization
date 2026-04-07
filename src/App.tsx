@@ -193,7 +193,19 @@ function App() {
               style={{ cursor: "pointer" }}
             >
               <td>{plugin.name}</td>
-              <td>{plugin.status}</td>
+              <td
+  style={{
+    color:
+      plugin.status === "updated"
+        ? "green"
+        : plugin.status === "deprecated"
+        ? "red"
+        : "orange",
+    fontWeight: "bold",
+  }}
+>
+  {plugin.status}
+</td>
             </tr>
           ))}
         </tbody>
