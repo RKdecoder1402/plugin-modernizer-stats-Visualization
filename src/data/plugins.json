@@ -1,7 +1,27 @@
 [
-  { "name": "plugin-a", "status": "updated" },
-  { "name": "plugin-b", "status": "deprecated" },
-  { "name": "plugin-c", "status": "needs_migration" },
-  { "name": "plugin-d", "status": "updated" },
-  { "name": "plugin-e", "status": "deprecated" }
+  {
+    "name": "plugin-a",
+    "status": "updated",
+    "url": "https://github.com/jenkinsci/plugin-a-plugin"
+  },
+  {
+    "name": "plugin-b",
+    "status": "deprecated",
+    "url": "https://github.com/jenkinsci/plugin-b-plugin"
+  },
+  {
+    "name": "plugin-c",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/plugin-c-plugin"
+  },
+  {
+    "name": "plugin-d",
+    "status": "updated",
+    "url": "https://github.com/jenkinsci/plugin-d-plugin"
+  },
+  {
+    "name": "plugin-e",
+    "status": "deprecated",
+    "url": "https://github.com/jenkinsci/plugin-e-plugin"
+  }
 ]

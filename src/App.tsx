@@ -192,7 +192,16 @@ function App() {
               onClick={() => setSelectedPlugin(plugin)}
               style={{ cursor: "pointer" }}
             >
-              <td>{plugin.name}</td>
+              <td>
+  <a
+    href={plugin.url}
+    target="_blank"
+    rel="noreferrer"
+    style={{ color: "#1976d2", textDecoration: "none" }}
+  >
+    {plugin.name}
+  </a>
+</td>
               <td
   style={{
     color:
