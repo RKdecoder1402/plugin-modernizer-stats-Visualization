@@ -150,17 +150,54 @@ function App() {
 
       {/* SORT */}
      <div style={{ marginBottom: "20px" }}>
-  <button onClick={() => setFilter("all")}>All</button>
+  <button
+    onClick={() => setFilter("all")}
+    style={{
+      background: filter === "all" ? "#1976d2" : "#eee",
+      color: filter === "all" ? "white" : "black",
+      padding: "6px 12px",
+      border: "none",
+    }}
+  >
+    All
+  </button>
 
-  <button onClick={() => setFilter("updated")} style={{ marginLeft: "10px" }}>
+  <button
+    onClick={() => setFilter("updated")}
+    style={{
+      marginLeft: "10px",
+      background: filter === "updated" ? "#1976d2" : "#eee",
+      color: filter === "updated" ? "white" : "black",
+      padding: "6px 12px",
+      border: "none",
+    }}
+  >
     Updated
   </button>
 
-  <button onClick={() => setFilter("deprecated")} style={{ marginLeft: "10px" }}>
+  <button
+    onClick={() => setFilter("deprecated")}
+    style={{
+      marginLeft: "10px",
+      background: filter === "deprecated" ? "#1976d2" : "#eee",
+      color: filter === "deprecated" ? "white" : "black",
+      padding: "6px 12px",
+      border: "none",
+    }}
+  >
     Deprecated
   </button>
 
-  <button onClick={() => setFilter("needs_migration")} style={{ marginLeft: "10px" }}>
+  <button
+    onClick={() => setFilter("needs_migration")}
+    style={{
+      marginLeft: "10px",
+      background: filter === "needs_migration" ? "#1976d2" : "#eee",
+      color: filter === "needs_migration" ? "white" : "black",
+      padding: "6px 12px",
+      border: "none",
+    }}
+  >
     Needs Migration
   </button>
 </div>
