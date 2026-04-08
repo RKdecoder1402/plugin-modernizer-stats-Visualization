@@ -149,14 +149,21 @@ function App() {
       />
 
       {/* SORT */}
-      <select
-        onChange={(e) => setSort(e.target.value)}
-        style={{ marginLeft: "10px", padding: "5px" }}
-      >
-        <option value="none">Sort</option>
-        <option value="name">Name</option>
-        <option value="status">Status</option>
-      </select>
+     <div style={{ marginBottom: "20px" }}>
+  <button onClick={() => setFilter("all")}>All</button>
+
+  <button onClick={() => setFilter("updated")} style={{ marginLeft: "10px" }}>
+    Updated
+  </button>
+
+  <button onClick={() => setFilter("deprecated")} style={{ marginLeft: "10px" }}>
+    Deprecated
+  </button>
+
+  <button onClick={() => setFilter("needs_migration")} style={{ marginLeft: "10px" }}>
+    Needs Migration
+  </button>
+</div>
 
       {/* BAR CHART */}
       <div
