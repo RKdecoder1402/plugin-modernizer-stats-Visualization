@@ -159,7 +159,7 @@ function App() {
       border: "none",
     }}
   >
-    All
+    All ({total})
   </button>
 
   <button
@@ -172,7 +172,7 @@ function App() {
       border: "none",
     }}
   >
-    Updated
+    Updated ({updatedCount})
   </button>
 
   <button
@@ -185,7 +185,7 @@ function App() {
       border: "none",
     }}
   >
-    Deprecated
+   Deprecated ({deprecatedCount})
   </button>
 
   <button
@@ -198,7 +198,7 @@ function App() {
       border: "none",
     }}
   >
-    Needs Migration
+    Needs Migration ({needsMigrationCount})
   </button>
 </div>
 
