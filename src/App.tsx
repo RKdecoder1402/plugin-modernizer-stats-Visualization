@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
-
-
 function App() {
   const chartRef = useRef<HTMLDivElement>(null);
 
@@ -47,23 +45,26 @@ function App() {
     (p: any) => p.status === "needs_migration"
   ).length;
 useEffect(() => {
-  fetch("https://raw.githubusercontent.com/jenkins-infra/metadata-plugin-modernizer/main/plugins.json")
+  fetch(
+    "https://raw.githubusercontent.com/jenkins-infra/metadata-plugin-modernizer/main/metadata.json"
+  )
     .then((res) => res.json())
     .then((json) => {
-      const mapped = json.slice(0, 50).map((p: any) => ({
-        name: p.name || p.plugin || "unknown",
-        status: p.status || "needs_migration",
-        url: `https://github.com/jenkinsci/${p.name}-plugin`
-      }));
+      const mapped = Object.keys(json)
+        .slice(0, 50)
+        .map((name: any) => ({
+          name: name,
+          status: "needs_migration",
+          url: `https://github.com/jenkinsci/${name}-plugin`,
+        }));
 
       setData(mapped);
     })
     .catch(() => {
-      // fallback dummy data
       setData([
         { name: "git", status: "updated", url: "#" },
         { name: "workflow", status: "deprecated", url: "#" },
-        { name: "docker", status: "needs_migration", url: "#" }
+        { name: "docker", status: "needs_migration", url: "#" },
       ]);
     });
 }, []);
