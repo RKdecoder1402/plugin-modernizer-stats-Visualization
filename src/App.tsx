@@ -106,7 +106,14 @@ function App() {
       <h1>Plugin Modernizer Dashboard</h1>
 
       {/* STATS CARDS */}
-      <div style={{ display: "flex", gap: "20px", marginBottom: "20px" }}>
+      <div
+  style={{
+    display: "flex",
+    gap: "20px",
+    marginBottom: "20px",
+    flexWrap: "wrap",
+  }}
+>
         <div style={cardStyle}>
           <h3>Total</h3>
           <p>{total}</p>
@@ -206,8 +213,9 @@ function App() {
       <div
         ref={chartRef}
         style={{
-          width: "600px",
-          height: "400px",
+  width: "100%",
+  maxWidth: "900px",
+  height: "400px",
           marginTop: "20px",
           marginBottom: "40px",
         }}
@@ -221,7 +229,8 @@ function App() {
 
       <h2>Plugin Data Explorer</h2>
 
-      <table border={1} cellPadding={10} style={{ borderCollapse: "collapse" }}>
+<div style={{ overflowX: "auto" }}>
+  <table border={1} cellPadding={10} style={{ borderCollapse: "collapse" }}>
         <thead>
           <tr>
             <th>Plugin Name</th>
@@ -262,7 +271,9 @@ function App() {
             </tr>
           ))}
         </tbody>
-      </table>
+     </table>
+</div>
+
 
       {selectedPlugin && (
         <div
