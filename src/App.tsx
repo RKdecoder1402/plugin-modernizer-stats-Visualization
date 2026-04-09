@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
-import data from "./data/plugins.json";
+
 
 function App() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -9,6 +9,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("none");
   const [selectedPlugin, setSelectedPlugin] = useState<any>(null);
+  const [data, setData] = useState<any[]>([]);
 
   let filteredData = data.filter((p: any) => {
     const statusMatch = filter === "all" || p.status === filter;
@@ -32,7 +33,6 @@ function App() {
     );
   }
 
-  // STATS
   const total = filteredData.length;
 
   const updatedCount = filteredData.filter(
@@ -46,7 +46,27 @@ function App() {
   const needsMigrationCount = filteredData.filter(
     (p: any) => p.status === "needs_migration"
   ).length;
+useEffect(() => {
+  fetch("https://raw.githubusercontent.com/jenkins-infra/metadata-plugin-modernizer/main/plugins.json")
+    .then((res) => res.json())
+    .then((json) => {
+      const mapped = json.slice(0, 50).map((p: any) => ({
+        name: p.name || p.plugin || "unknown",
+        status: p.status || "needs_migration",
+        url: `https://github.com/jenkinsci/${p.name}-plugin`
+      }));
 
+      setData(mapped);
+    })
+    .catch(() => {
+      // fallback dummy data
+      setData([
+        { name: "git", status: "updated", url: "#" },
+        { name: "workflow", status: "deprecated", url: "#" },
+        { name: "docker", status: "needs_migration", url: "#" }
+      ]);
+    });
+}, []);
   useEffect(() => {
     if (!chartRef.current) return;
 
@@ -107,13 +127,13 @@ function App() {
 
       {/* STATS CARDS */}
       <div
-  style={{
-    display: "flex",
-    gap: "20px",
-    marginBottom: "20px",
-    flexWrap: "wrap",
-  }}
->
+        style={{
+          display: "flex",
+          gap: "20px",
+          marginBottom: "20px",
+          flexWrap: "wrap",
+        }}
+      >
         <div style={cardStyle}>
           <h3>Total</h3>
           <p>{total}</p>
@@ -135,87 +155,100 @@ function App() {
         </div>
       </div>
 
-      {/* FILTER */}
-      <select
-        onChange={(e) => setFilter(e.target.value)}
-        style={{ marginBottom: "20px", padding: "5px" }}
+      {/* CONTROLS */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "10px",
+          marginBottom: "20px",
+          alignItems: "center",
+        }}
       >
-        <option value="all">All</option>
-        <option value="updated">Updated</option>
-        <option value="deprecated">Deprecated</option>
-        <option value="needs_migration">Needs Migration</option>
-      </select>
+        {/* dropdown */}
+        <select
+          onChange={(e) => setFilter(e.target.value)}
+          style={{ padding: "5px" }}
+        >
+          <option value="all">All</option>
+          <option value="updated">Updated</option>
+          <option value="deprecated">Deprecated</option>
+          <option value="needs_migration">Needs Migration</option>
+        </select>
 
-      {/* SEARCH */}
-      <input
-        type="text"
-        placeholder="Search plugin..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        style={{ marginLeft: "10px", padding: "5px" }}
-      />
+        {/* search */}
+        <input
+          type="text"
+          placeholder="Search plugin..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={{ padding: "5px" }}
+        />
 
-      {/* SORT */}
-     <div style={{ marginBottom: "20px" }}>
-  <button
-    onClick={() => setFilter("all")}
-    style={{
-      background: filter === "all" ? "#1976d2" : "#eee",
-      color: filter === "all" ? "white" : "black",
-      padding: "6px 12px",
-      border: "none",
-    }}
-  >
-    All ({total})
-  </button>
+        {/* buttons */}
+        <div>
+          <button
+            onClick={() => setFilter("all")}
+            style={{
+              background: filter === "all" ? "#1976d2" : "#eee",
+              color: filter === "all" ? "white" : "black",
+              padding: "6px 12px",
+              border: "none",
+            }}
+          >
+            All ({total})
+          </button>
 
-  <button
-    onClick={() => setFilter("updated")}
-    style={{
-      marginLeft: "10px",
-      background: filter === "updated" ? "#1976d2" : "#eee",
-      color: filter === "updated" ? "white" : "black",
-      padding: "6px 12px",
-      border: "none",
-    }}
-  >
-    Updated ({updatedCount})
-  </button>
+          <button
+            onClick={() => setFilter("updated")}
+            style={{
+              marginLeft: "10px",
+              background: filter === "updated" ? "#1976d2" : "#eee",
+              color: filter === "updated" ? "white" : "black",
+              padding: "6px 12px",
+              border: "none",
+            }}
+          >
+            Updated ({updatedCount})
+          </button>
 
-  <button
-    onClick={() => setFilter("deprecated")}
-    style={{
-      marginLeft: "10px",
-      background: filter === "deprecated" ? "#1976d2" : "#eee",
-      color: filter === "deprecated" ? "white" : "black",
-      padding: "6px 12px",
-      border: "none",
-    }}
-  >
-   Deprecated ({deprecatedCount})
-  </button>
+          <button
+            onClick={() => setFilter("deprecated")}
+            style={{
+              marginLeft: "10px",
+              background: filter === "deprecated" ? "#1976d2" : "#eee",
+              color: filter === "deprecated" ? "white" : "black",
+              padding: "6px 12px",
+              border: "none",
+            }}
+          >
+            Deprecated ({deprecatedCount})
+          </button>
 
-  <button
-    onClick={() => setFilter("needs_migration")}
-    style={{
-      marginLeft: "10px",
-      background: filter === "needs_migration" ? "#1976d2" : "#eee",
-      color: filter === "needs_migration" ? "white" : "black",
-      padding: "6px 12px",
-      border: "none",
-    }}
-  >
-    Needs Migration ({needsMigrationCount})
-  </button>
-</div>
+          <button
+            onClick={() => setFilter("needs_migration")}
+            style={{
+              marginLeft: "10px",
+              background:
+                filter === "needs_migration" ? "#1976d2" : "#eee",
+              color:
+                filter === "needs_migration" ? "white" : "black",
+              padding: "6px 12px",
+              border: "none",
+            }}
+          >
+            Needs Migration ({needsMigrationCount})
+          </button>
+        </div>
+      </div>
 
       {/* BAR CHART */}
       <div
         ref={chartRef}
         style={{
-  width: "100%",
-  maxWidth: "900px",
-  height: "400px",
+          width: "100%",
+          maxWidth: "900px",
+          height: "400px",
           marginTop: "20px",
           marginBottom: "40px",
         }}
@@ -224,56 +257,68 @@ function App() {
       {/* PIE CHART */}
       <div
         id="pieChart"
-        style={{ width: "600px", height: "400px", marginBottom: "40px" }}
+        style={{
+          width: "100%",
+          maxWidth: "900px",
+          height: "400px",
+          marginBottom: "40px",
+        }}
       />
 
       <h2>Plugin Data Explorer</h2>
 
-<div style={{ overflowX: "auto" }}>
-  <table border={1} cellPadding={10} style={{ borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th>Plugin Name</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {filteredData.map((plugin: any, index: number) => (
-            <tr
-              key={index}
-              onClick={() => setSelectedPlugin(plugin)}
-              style={{ cursor: "pointer" }}
-            >
-              <td>
-  <a
-    href={plugin.url}
-    target="_blank"
-    rel="noreferrer"
-    style={{ color: "#1976d2", textDecoration: "none" }}
-  >
-    {plugin.name}
-  </a>
-</td>
-              <td
-  style={{
-    color:
-      plugin.status === "updated"
-        ? "green"
-        : plugin.status === "deprecated"
-        ? "red"
-        : "orange",
-    fontWeight: "bold",
-  }}
->
-  {plugin.status}
-</td>
+      <div style={{ overflowX: "auto" }}>
+        <table
+          border={1}
+          cellPadding={10}
+          style={{ borderCollapse: "collapse" }}
+        >
+          <thead>
+            <tr>
+              <th>Plugin Name</th>
+              <th>Status</th>
             </tr>
-          ))}
-        </tbody>
-     </table>
-</div>
+          </thead>
 
+          <tbody>
+            {filteredData.map((plugin: any, index: number) => (
+              <tr
+                key={index}
+                onClick={() => setSelectedPlugin(plugin)}
+                style={{ cursor: "pointer" }}
+              >
+                <td>
+                  <a
+                    href={plugin.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      color: "#1976d2",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {plugin.name}
+                  </a>
+                </td>
+
+                <td
+                  style={{
+                    color:
+                      plugin.status === "updated"
+                        ? "green"
+                        : plugin.status === "deprecated"
+                        ? "red"
+                        : "orange",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {plugin.status}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {selectedPlugin && (
         <div
@@ -286,7 +331,10 @@ function App() {
           <h3>Plugin Details</h3>
           <p><b>Name:</b> {selectedPlugin.name}</p>
           <p><b>Status:</b> {selectedPlugin.status}</p>
-          <p><b>Recommendation:</b> Update plugin dependencies and migrate APIs.</p>
+          <p>
+            <b>Recommendation:</b> Update plugin dependencies and
+            migrate APIs.
+          </p>
         </div>
       )}
     </div>
