@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
+import data from "./data/jenkins-plugins.json";
 function App() {
   const chartRef = useRef<HTMLDivElement>(null);
 
@@ -7,7 +8,6 @@ function App() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("none");
   const [selectedPlugin, setSelectedPlugin] = useState<any>(null);
-  const [data, setData] = useState<any[]>([]);
 
   let filteredData = data.filter((p: any) => {
     const statusMatch = filter === "all" || p.status === filter;
@@ -44,30 +44,6 @@ function App() {
   const needsMigrationCount = filteredData.filter(
     (p: any) => p.status === "needs_migration"
   ).length;
-useEffect(() => {
-  fetch(
-    "https://raw.githubusercontent.com/jenkins-infra/metadata-plugin-modernizer/main/metadata.json"
-  )
-    .then((res) => res.json())
-    .then((json) => {
-      const mapped = Object.keys(json)
-        .slice(0, 50)
-        .map((name: any) => ({
-          name: name,
-          status: "needs_migration",
-          url: `https://github.com/jenkinsci/${name}-plugin`,
-        }));
-
-      setData(mapped);
-    })
-    .catch(() => {
-      setData([
-        { name: "git", status: "updated", url: "#" },
-        { name: "workflow", status: "deprecated", url: "#" },
-        { name: "docker", status: "needs_migration", url: "#" },
-      ]);
-    });
-}, []);
   useEffect(() => {
     if (!chartRef.current) return;
 

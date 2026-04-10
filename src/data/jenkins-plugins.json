@@ -1,0 +1,22 @@
+[
+  {
+    "name": "git",
+    "status": "updated"
+  },
+  {
+    "name": "docker",
+    "status": "needs_migration"
+  },
+  {
+    "name": "workflow-job",
+    "status": "deprecated"
+  },
+  {
+    "name": "kubernetes",
+    "status": "needs_migration"
+  },
+  {
+    "name": "credentials",
+    "status": "updated"
+  }
+]
