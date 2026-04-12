@@ -258,42 +258,42 @@ function App() {
           </thead>
 
           <tbody>
-            {filteredData.map((plugin: any, index: number) => (
-              <tr
-                key={index}
-                onClick={() => setSelectedPlugin(plugin)}
-                style={{ cursor: "pointer" }}
-              >
-                <td>
-                  <a
-                    href={plugin.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{
-                      color: "#1976d2",
-                      textDecoration: "none",
-                    }}
-                  >
-                    {plugin.name}
-                  </a>
-                </td>
+  {filteredData.map((plugin: any, index: number) => (
+    <tr
+      key={index}
+      onClick={() => setSelectedPlugin(plugin)}
+      style={{ cursor: "pointer" }}
+    >
+      <td>
+        <a
+          href={plugin.url}
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            color: "#1976d2",
+            textDecoration: "none",
+          }}
+        >
+          {plugin.name}
+        </a>
+      </td>
 
-                <td
-                  style={{
-                    color:
-                      plugin.status === "updated"
-                        ? "green"
-                        : plugin.status === "deprecated"
-                        ? "red"
-                        : "orange",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {plugin.status}
-                </td>
-              </tr>
-            ))}
-          </tbody>
+      <td
+        style={{
+          color:
+            plugin.status === "updated"
+              ? "green"
+              : plugin.status === "deprecated"
+              ? "red"
+              : "orange",
+          fontWeight: "bold",
+        }}
+      >
+        {plugin.status}
+      </td>
+    </tr>
+  ))}
+</tbody>
         </table>
       </div>
 
