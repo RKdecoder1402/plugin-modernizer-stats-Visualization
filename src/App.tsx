@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import data from "./data/jenkins-plugins.json";
+
 function App() {
   const chartRef = useRef<HTMLDivElement>(null);
 
@@ -8,6 +9,9 @@ function App() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("none");
   const [selectedPlugin, setSelectedPlugin] = useState<any>(null);
+
+  const [page, setPage] = useState(1);
+  const pageSize = 20;
 
   let filteredData = data.filter((p: any) => {
     const statusMatch = filter === "all" || p.status === filter;
@@ -44,6 +48,12 @@ function App() {
   const needsMigrationCount = filteredData.filter(
     (p: any) => p.status === "needs_migration"
   ).length;
+
+  // pagination
+  const start = (page - 1) * pageSize;
+  const paginatedData = filteredData.slice(start, start + pageSize);
+  const totalPages = Math.ceil(filteredData.length / pageSize);
+
   useEffect(() => {
     if (!chartRef.current) return;
 
@@ -102,7 +112,6 @@ function App() {
     <div style={{ padding: "20px" }}>
       <h1>Plugin Modernizer Dashboard</h1>
 
-      {/* STATS CARDS */}
       <div
         style={{
           display: "flex",
@@ -132,7 +141,6 @@ function App() {
         </div>
       </div>
 
-      {/* CONTROLS */}
       <div
         style={{
           display: "flex",
@@ -142,7 +150,6 @@ function App() {
           alignItems: "center",
         }}
       >
-        {/* dropdown */}
         <select
           onChange={(e) => setFilter(e.target.value)}
           style={{ padding: "5px" }}
@@ -153,7 +160,6 @@ function App() {
           <option value="needs_migration">Needs Migration</option>
         </select>
 
-        {/* search */}
         <input
           type="text"
           placeholder="Search plugin..."
@@ -161,77 +167,18 @@ function App() {
           onChange={(e) => setSearch(e.target.value)}
           style={{ padding: "5px" }}
         />
-
-        {/* buttons */}
-        <div>
-          <button
-            onClick={() => setFilter("all")}
-            style={{
-              background: filter === "all" ? "#1976d2" : "#eee",
-              color: filter === "all" ? "white" : "black",
-              padding: "6px 12px",
-              border: "none",
-            }}
-          >
-            All ({total})
-          </button>
-
-          <button
-            onClick={() => setFilter("updated")}
-            style={{
-              marginLeft: "10px",
-              background: filter === "updated" ? "#1976d2" : "#eee",
-              color: filter === "updated" ? "white" : "black",
-              padding: "6px 12px",
-              border: "none",
-            }}
-          >
-            Updated ({updatedCount})
-          </button>
-
-          <button
-            onClick={() => setFilter("deprecated")}
-            style={{
-              marginLeft: "10px",
-              background: filter === "deprecated" ? "#1976d2" : "#eee",
-              color: filter === "deprecated" ? "white" : "black",
-              padding: "6px 12px",
-              border: "none",
-            }}
-          >
-            Deprecated ({deprecatedCount})
-          </button>
-
-          <button
-            onClick={() => setFilter("needs_migration")}
-            style={{
-              marginLeft: "10px",
-              background:
-                filter === "needs_migration" ? "#1976d2" : "#eee",
-              color:
-                filter === "needs_migration" ? "white" : "black",
-              padding: "6px 12px",
-              border: "none",
-            }}
-          >
-            Needs Migration ({needsMigrationCount})
-          </button>
-        </div>
       </div>
 
-      {/* BAR CHART */}
       <div
         ref={chartRef}
         style={{
           width: "100%",
           maxWidth: "900px",
           height: "400px",
-          marginTop: "20px",
           marginBottom: "40px",
         }}
       />
 
-      {/* PIE CHART */}
       <div
         id="pieChart"
         style={{
@@ -245,11 +192,7 @@ function App() {
       <h2>Plugin Data Explorer</h2>
 
       <div style={{ overflowX: "auto" }}>
-        <table
-          border={1}
-          cellPadding={10}
-          style={{ borderCollapse: "collapse" }}
-        >
+        <table border={1} cellPadding={10} style={{ borderCollapse: "collapse" }}>
           <thead>
             <tr>
               <th>Plugin Name</th>
@@ -258,43 +201,60 @@ function App() {
           </thead>
 
           <tbody>
-  {filteredData.map((plugin: any, index: number) => (
-    <tr
-      key={index}
-      onClick={() => setSelectedPlugin(plugin)}
-      style={{ cursor: "pointer" }}
-    >
-      <td>
-        <a
-          href={plugin.url}
-          target="_blank"
-          rel="noreferrer"
-          style={{
-            color: "#1976d2",
-            textDecoration: "none",
-          }}
-        >
-          {plugin.name}
-        </a>
-      </td>
+            {paginatedData.map((plugin: any, index: number) => (
+              <tr
+                key={index}
+                onClick={() => setSelectedPlugin(plugin)}
+                style={{ cursor: "pointer" }}
+              >
+                <td>
+                  <a
+                    href={plugin.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      color: "#1976d2",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {plugin.name}
+                  </a>
+                </td>
 
-      <td
-        style={{
-          color:
-            plugin.status === "updated"
-              ? "green"
-              : plugin.status === "deprecated"
-              ? "red"
-              : "orange",
-          fontWeight: "bold",
-        }}
-      >
-        {plugin.status}
-      </td>
-    </tr>
-  ))}
-</tbody>
+                <td
+                  style={{
+                    color:
+                      plugin.status === "updated"
+                        ? "green"
+                        : plugin.status === "deprecated"
+                        ? "red"
+                        : "orange",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {plugin.status}
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
+
+        <div style={{ marginTop: "15px" }}>
+          <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+            Prev
+          </button>
+
+          <span style={{ margin: "0 10px" }}>
+            Page {page} / {totalPages}
+          </span>
+
+          <button
+            disabled={page === totalPages}
+            onClick={() => setPage(page + 1)}
+          >
+            Next
+          </button>
+        </div>
       </div>
 
       {selectedPlugin && (
@@ -309,8 +269,7 @@ function App() {
           <p><b>Name:</b> {selectedPlugin.name}</p>
           <p><b>Status:</b> {selectedPlugin.status}</p>
           <p>
-            <b>Recommendation:</b> Update plugin dependencies and
-            migrate APIs.
+            <b>Recommendation:</b> Update plugin dependencies and migrate APIs.
           </p>
         </div>
       )}
