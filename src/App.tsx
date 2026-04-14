@@ -48,6 +48,20 @@ function App() {
   const needsMigrationCount = filteredData.filter(
     (p: any) => p.status === "needs_migration"
   ).length;
+  const updatedPercent = Math.round(
+  (updatedCount / total) * 100 || 0
+);
+
+const deprecatedPercent = Math.round(
+  (deprecatedCount / total) * 100 || 0
+);
+
+const migrationPercent = Math.round(
+  (needsMigrationCount / total) * 100 || 0
+);
+
+const topPlugins = filteredData.slice(0, 10);
+  
 
   // pagination
   const start = (page - 1) * pageSize;
@@ -188,6 +202,25 @@ function App() {
           marginBottom: "40px",
         }}
       />
+      <h2>Insights</h2>
+
+<div style={{ display: "flex", gap: "40px", flexWrap: "wrap" }}>
+  <div>
+    <h3>Status Distribution</h3>
+    <p>Updated: {updatedPercent}%</p>
+    <p>Deprecated: {deprecatedPercent}%</p>
+    <p>Needs Migration: {migrationPercent}%</p>
+  </div>
+
+  <div>
+    <h3>Top Plugins</h3>
+    <ul>
+      {topPlugins.map((p: any) => (
+        <li key={p.name}>{p.name}</li>
+      ))}
+    </ul>
+  </div>
+</div>
 
       <h2>Plugin Data Explorer</h2>
 
