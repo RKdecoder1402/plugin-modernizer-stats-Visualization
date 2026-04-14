@@ -254,19 +254,25 @@ const topPlugins = filteredData.slice(0, 10);
                   </a>
                 </td>
 
-                <td
-                  style={{
-                    color:
-                      plugin.status === "updated"
-                        ? "green"
-                        : plugin.status === "deprecated"
-                        ? "red"
-                        : "orange",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {plugin.status}
-                </td>
+               <td>
+  <span
+    style={{
+      padding: "4px 8px",
+      borderRadius: "6px",
+      fontSize: "12px",
+      fontWeight: "bold",
+      background:
+        plugin.status === "updated"
+          ? "#1b5e20"
+          : plugin.status === "deprecated"
+          ? "#b71c1c"
+          : "#e65100",
+      color: "white"
+    }}
+  >
+    {plugin.status}
+  </span>
+</td>
               </tr>
             ))}
           </tbody>
