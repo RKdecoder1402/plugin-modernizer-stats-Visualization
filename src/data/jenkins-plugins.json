@@ -1,17 +1,12 @@
 [
   {
-    "name": ".github",
-    "status": "needs_migration",
-    "url": "https://github.com/jenkinsci/.github-plugin"
-  },
-  {
     "name": "BlazeMeterJenkinsPlugin",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/BlazeMeterJenkinsPlugin-plugin"
   },
   {
     "name": "CustomHistory",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/CustomHistory-plugin"
   },
   {
@@ -31,17 +26,17 @@
   },
   {
     "name": "TestFairy",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/TestFairy-plugin"
   },
   {
     "name": "absint-a3",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/absint-a3-plugin"
   },
   {
     "name": "active-directory",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/active-directory-plugin"
   },
   {
@@ -51,42 +46,42 @@
   },
   {
     "name": "advanced-installer-msi-builder",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/advanced-installer-msi-builder-plugin"
   },
   {
     "name": "agent-loadbalance",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/agent-loadbalance-plugin"
   },
   {
     "name": "agent-server-parameter",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/agent-server-parameter-plugin"
   },
   {
     "name": "aio-tests",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/aio-tests-plugin"
   },
   {
     "name": "alauda-devops-credentials-provider",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/alauda-devops-credentials-provider-plugin"
   },
   {
     "name": "alauda-devops-pipeline",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/alauda-devops-pipeline-plugin"
   },
   {
     "name": "alauda-kubernetes-support",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/alauda-kubernetes-support-plugin"
   },
   {
     "name": "alauda-pipeline",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/alauda-pipeline-plugin"
   },
   {
@@ -96,12 +91,12 @@
   },
   {
     "name": "alibabacloud-ecs",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/alibabacloud-ecs-plugin"
   },
   {
     "name": "alibabacloud-edas",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/alibabacloud-edas-plugin"
   },
   {
@@ -111,7 +106,7 @@
   },
   {
     "name": "allure-jenkins-plugin",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/allure-jenkins-plugin-plugin"
   },
   {
@@ -131,17 +126,17 @@
   },
   {
     "name": "ansible",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/ansible-plugin"
   },
   {
     "name": "apifortress",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/apifortress-plugin"
   },
   {
     "name": "app-detector",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/app-detector-plugin"
   },
   {
@@ -161,37 +156,37 @@
   },
   {
     "name": "appray",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/appray-plugin"
   },
   {
     "name": "apprenda",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/apprenda-plugin"
   },
   {
     "name": "appscan",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/appscan-plugin"
   },
   {
     "name": "aqua-security-scanner",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/aqua-security-scanner-plugin"
   },
   {
     "name": "arachni-scanner",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/arachni-scanner-plugin"
   },
   {
     "name": "arestocats",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/arestocats-plugin"
   },
   {
     "name": "artifact-promotion",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/artifact-promotion-plugin"
   },
   {
@@ -206,12 +201,12 @@
   },
   {
     "name": "artifactory",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/artifactory-plugin"
   },
   {
     "name": "ascentialtest-cmd-line",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/ascentialtest-cmd-line-plugin"
   },
   {
@@ -226,27 +221,32 @@
   },
   {
     "name": "audit2db",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/audit2db-plugin"
   },
   {
     "name": "autoaction-step",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/autoaction-step-plugin"
   },
   {
     "name": "autocancel",
-    "status": "needs_migration",
+    "status": "deprecated",
     "url": "https://github.com/jenkinsci/autocancel-plugin"
   },
   {
     "name": "autonomiq",
-    "status": "needs_migration",
+    "status": "updated",
     "url": "https://github.com/jenkinsci/autonomiq-plugin"
   },
   {
     "name": "aws-bucket-credentials",
     "status": "needs_migration",
     "url": "https://github.com/jenkinsci/aws-bucket-credentials-plugin"
+  },
+  {
+    "name": "aws-codecommit-jobs",
+    "status": "updated",
+    "url": "https://github.com/jenkinsci/aws-codecommit-jobs-plugin"
   }
 ]
