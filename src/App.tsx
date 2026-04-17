@@ -1,3 +1,5 @@
+import { Routes, Route } from "react-router-dom";
+import PluginDetail from "./PluginDetail";
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import data from "./data/jenkins-plugins.json";
@@ -123,7 +125,11 @@ const topPlugins = filteredData.slice(0, 10);
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+  <Routes>
+    <Route
+      path="/"
+      element={
+        <div style={{ padding: "20px" }}>
       <h1>Plugin Modernizer Dashboard</h1>
 
       <div
@@ -242,7 +248,7 @@ const topPlugins = filteredData.slice(0, 10);
               >
                 <td>
                   <a
-                    href={plugin.url}
+                    href={`/plugin/${plugin.name}`}
                     target="_blank"
                     rel="noreferrer"
                     style={{
@@ -312,8 +318,12 @@ const topPlugins = filteredData.slice(0, 10);
           </p>
         </div>
       )}
-    </div>
-  );
+            </div>
+      }
+    />
+    <Route path="/plugin/:name" element={<PluginDetail />} />
+  </Routes>
+);
 }
 
 export default App;
