@@ -247,9 +247,8 @@ const topPlugins = filteredData.slice(0, 10);
                 style={{ cursor: "pointer" }}
               >
                 <td>
-                  <a
-                    href={`/plugin/${plugin.name}`}
-                    target="_blank"
+                    <a href={`#/plugin/${plugin.name}`}
+                    
                     rel="noreferrer"
                     style={{
                       color: "#1976d2",
