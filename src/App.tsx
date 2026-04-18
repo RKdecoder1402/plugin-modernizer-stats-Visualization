@@ -9,7 +9,7 @@ function App() {
 
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
-  const [sort, setSort] = useState("none");
+  const [sort] = useState("none");
   const [selectedPlugin, setSelectedPlugin] = useState<any>(null);
 
   const [page, setPage] = useState(1);
