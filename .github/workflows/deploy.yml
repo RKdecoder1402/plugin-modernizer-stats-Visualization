@@ -27,5 +27,11 @@ jobs:
       - name: Build project
         run: npm run build
 
+      # 🔥 FIX ADDED (git identity)
+      - name: Set Git identity
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
       - name: Deploy to GitHub Pages
         run: npx gh-pages -d dist
