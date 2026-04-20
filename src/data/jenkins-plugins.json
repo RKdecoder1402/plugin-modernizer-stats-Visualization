@@ -1,302 +1,302 @@
 [
   {
-    "name": "plugin-0",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-1",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-2",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-3",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-4",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-5",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-6",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-7",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-8",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-9",
+    "name": "BlazeMeterJenkinsPlugin",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/BlazeMeterJenkinsPlugin-plugin",
+    "lastUpdated": "2026-04-20"
   },
   {
-    "name": "plugin-10",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-11",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-12",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-13",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-14",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-15",
+    "name": "CustomHistory",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/CustomHistory-plugin",
+    "lastUpdated": "2026-04-20"
   },
   {
-    "name": "plugin-16",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-17",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-18",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-19",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-20",
+    "name": "Matrix-sorter-plugin",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/Matrix-sorter-plugin-plugin",
+    "lastUpdated": "2026-04-20"
   },
   {
-    "name": "plugin-21",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-22",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-23",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-24",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-25",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-26",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-27",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-28",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-29",
+    "name": "Office-365-Connector",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/Office-365-Connector-plugin",
+    "lastUpdated": "2026-04-20"
   },
   {
-    "name": "plugin-30",
+    "name": "TestComplete",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/TestComplete-plugin",
+    "lastUpdated": "2026-04-20"
   },
   {
-    "name": "plugin-31",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-32",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-33",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-34",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-35",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-36",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-37",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-38",
+    "name": "TestFairy",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/TestFairy-plugin",
+    "lastUpdated": "2026-04-20"
   },
   {
-    "name": "plugin-39",
+    "name": "absint-a3",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/absint-a3-plugin",
+    "lastUpdated": "2026-04-20"
   },
   {
-    "name": "plugin-40",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-41",
+    "name": "active-directory",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/active-directory-plugin",
+    "lastUpdated": "2026-04-20"
   },
   {
-    "name": "plugin-42",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-43",
-    "status": "deprecated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-44",
+    "name": "adaptive-disconnector",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/adaptive-disconnector-plugin",
+    "lastUpdated": "2026-04-20"
   },
   {
-    "name": "plugin-45",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-46",
-    "status": "updated",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
-  },
-  {
-    "name": "plugin-47",
+    "name": "advanced-installer-msi-builder",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/advanced-installer-msi-builder-plugin",
+    "lastUpdated": "2026-04-20"
   },
   {
-    "name": "plugin-48",
+    "name": "agent-loadbalance",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/agent-loadbalance-plugin",
+    "lastUpdated": "2026-04-20"
   },
   {
-    "name": "plugin-49",
+    "name": "agent-server-parameter",
     "status": "needs_migration",
-    "url": "#",
-    "lastUpdated": "2026-04-18"
+    "url": "https://github.com/jenkinsci/agent-server-parameter-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "aio-tests",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/aio-tests-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "alauda-devops-credentials-provider",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/alauda-devops-credentials-provider-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "alauda-devops-pipeline",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/alauda-devops-pipeline-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "alauda-kubernetes-support",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/alauda-kubernetes-support-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "alauda-pipeline",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/alauda-pipeline-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "alibabacloud-credentials",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/alibabacloud-credentials-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "alibabacloud-ecs",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/alibabacloud-ecs-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "alibabacloud-edas",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/alibabacloud-edas-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "aliyun-oss-uploader",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/aliyun-oss-uploader-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "allure-jenkins-plugin",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/allure-jenkins-plugin-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "anchore-container-scanner",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/anchore-container-scanner-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "android-emulator",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/android-emulator-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "ansible-tower",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/ansible-tower-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "ansible",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/ansible-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "apifortress",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/apifortress-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "app-detector",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/app-detector-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "appcenter",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/appcenter-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "appetize",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/appetize-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "applatix",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/applatix-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "appray",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/appray-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "apprenda",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/apprenda-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "appscan",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/appscan-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "aqua-security-scanner",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/aqua-security-scanner-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "arachni-scanner",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/arachni-scanner-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "arestocats",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/arestocats-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "artifact-promotion",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/artifact-promotion-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "artifactory-artifact-manager",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/artifactory-artifact-manager-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "artifactory-client-api",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/artifactory-client-api-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "artifactory",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/artifactory-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "ascentialtest-cmd-line",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/ascentialtest-cmd-line-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "asm-api",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/asm-api-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "audit-log",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/audit-log-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "audit2db",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/audit2db-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "autoaction-step",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/autoaction-step-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "autocancel",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/autocancel-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "autonomiq",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/autonomiq-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "aws-bucket-credentials",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/aws-bucket-credentials-plugin",
+    "lastUpdated": "2026-04-20"
+  },
+  {
+    "name": "aws-codecommit-jobs",
+    "status": "needs_migration",
+    "url": "https://github.com/jenkinsci/aws-codecommit-jobs-plugin",
+    "lastUpdated": "2026-04-20"
   }
 ]

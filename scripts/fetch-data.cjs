@@ -9,21 +9,20 @@ async function fetchPlugins() {
       "https://api.github.com/repos/jenkins-infra/metadata-plugin-modernizer/contents/"
     );
 
+    if (!res.ok) {
+      throw new Error("GitHub API failed");
+    }
+
     const data = await res.json();
 
     const plugins = data
-      .filter(item => item.type === "dir" && !item.name.startsWith("."))
+      .filter((item) => item.type === "dir" && !item.name.startsWith("."))
       .slice(0, 50)
-      .map(p => ({
+      .map((p) => ({
         name: p.name,
-        status:
-          Math.random() > 0.7
-            ? "updated"
-            : Math.random() > 0.4
-            ? "deprecated"
-            : "needs_migration",
+        status: "needs_migration", // temporary (real parsing next)
         url: `https://github.com/jenkinsci/${p.name}-plugin`,
-        lastUpdated: new Date().toISOString().split("T")[0]
+        lastUpdated: new Date().toISOString().split("T")[0],
       }));
 
     fs.writeFileSync(
@@ -35,16 +34,15 @@ async function fetchPlugins() {
   } catch (error) {
     console.log("GitHub fetch failed, using fallback data");
 
-    const plugins = Array.from({ length: 50 }).map((_, i) => ({
-      name: `plugin-${i}`,
-      status:
-        Math.random() > 0.7
-          ? "updated"
-          : Math.random() > 0.4
-          ? "deprecated"
-          : "needs_migration",
-      url: "#",
-      lastUpdated: new Date().toISOString().split("T")[0]
+    const plugins = [
+      { name: "git", status: "needs_migration", url: "https://github.com/jenkinsci/git-plugin" },
+      { name: "workflow-job", status: "needs_migration", url: "https://github.com/jenkinsci/workflow-job-plugin" },
+      { name: "credentials", status: "needs_migration", url: "https://github.com/jenkinsci/credentials-plugin" },
+      { name: "kubernetes", status: "needs_migration", url: "https://github.com/jenkinsci/kubernetes-plugin" },
+      { name: "docker", status: "needs_migration", url: "https://github.com/jenkinsci/docker-plugin" }
+    ].map((p) => ({
+      ...p,
+      lastUpdated: new Date().toISOString().split("T")[0],
     }));
 
     fs.writeFileSync(
