@@ -20,7 +20,17 @@ async function fetchPlugins() {
       .slice(0, 50)
       .map((p) => ({
         name: p.name,
-        status: "needs_migration", // temporary (real parsing next)
+
+        // basic smarter status logic
+        status:
+          p.name.includes("deprecated")
+            ? "deprecated"
+            : p.name.includes("workflow") ||
+              p.name.includes("git") ||
+              p.name.includes("credentials")
+            ? "updated"
+            : "needs_migration",
+
         url: `https://github.com/jenkinsci/${p.name}-plugin`,
         lastUpdated: new Date().toISOString().split("T")[0],
       }));
@@ -35,11 +45,31 @@ async function fetchPlugins() {
     console.log("GitHub fetch failed, using fallback data");
 
     const plugins = [
-      { name: "git", status: "needs_migration", url: "https://github.com/jenkinsci/git-plugin" },
-      { name: "workflow-job", status: "needs_migration", url: "https://github.com/jenkinsci/workflow-job-plugin" },
-      { name: "credentials", status: "needs_migration", url: "https://github.com/jenkinsci/credentials-plugin" },
-      { name: "kubernetes", status: "needs_migration", url: "https://github.com/jenkinsci/kubernetes-plugin" },
-      { name: "docker", status: "needs_migration", url: "https://github.com/jenkinsci/docker-plugin" }
+      {
+        name: "git",
+        status: "updated",
+        url: "https://github.com/jenkinsci/git-plugin",
+      },
+      {
+        name: "workflow-job",
+        status: "updated",
+        url: "https://github.com/jenkinsci/workflow-job-plugin",
+      },
+      {
+        name: "credentials",
+        status: "updated",
+        url: "https://github.com/jenkinsci/credentials-plugin",
+      },
+      {
+        name: "kubernetes",
+        status: "needs_migration",
+        url: "https://github.com/jenkinsci/kubernetes-plugin",
+      },
+      {
+        name: "docker",
+        status: "needs_migration",
+        url: "https://github.com/jenkinsci/docker-plugin",
+      }
     ].map((p) => ({
       ...p,
       lastUpdated: new Date().toISOString().split("T")[0],
